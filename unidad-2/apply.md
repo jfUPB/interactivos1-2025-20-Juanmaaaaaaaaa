@@ -10,66 +10,67 @@
 
 ### Actividad 5
 
-from microbit import *
-import music
-import utime
-
-TIEMPO_MIN = 10
-TIEMPO_MAX = 60
-TIEMPO_INICIAL = 20
-estado = "CONFIG"
-tiempo = TIEMPO_INICIAL
-inicio = 0
-
-def mostrar_tiempo(t):
-    display.show(str(t))
-
-def explotar():
-    display.show(Image.SKULL)
-    music.play(music.WAWAWAWAA)
-
-while True:
-    if estado == "CONFIG":
-        mostrar_tiempo(tiempo)
-
-        if button_a.was_pressed():
-            if tiempo < TIEMPO_MAX:
-                tiempo += 1
-                mostrar_tiempo(tiempo)
-                sleep(200)
-
-        if button_b.was_pressed():
-            if tiempo > TIEMPO_MIN:
-                tiempo -= 1
-                mostrar_tiempo(tiempo)
-                sleep(200)
-
-        if accelerometer.was_gesture("shake"):
-            estado = "ARMED"
-            inicio = utime.ticks_ms()
-
-    elif estado == "ARMED":
-        tiempo_transcurrido = utime.ticks_diff(utime.ticks_ms(), inicio) // 1000
-        tiempo_restante = tiempo - tiempo_transcurrido
-
-        if tiempo_restante >= 0:
-            mostrar_tiempo(tiempo_restante)
-        else:
-            estado = "EXPLODE"
-
-        if button_logo.was_pressed():
-            estado = "CONFIG"
-            tiempo = TIEMPO_INICIAL
-            display.clear()
-            sleep(500)
-
-    elif estado == "EXPLODE":
-        explotar()
-
-        if button_logo.was_pressed():
-            estado = "CONFIG"
-            tiempo = TIEMPO_INICIAL
-            display.clear()
-            sleep(500)
-
-    sleep(100)
+    from microbit import *
+    import music
+    import utime
+    
+    TIEMPO_MIN = 10
+    TIEMPO_MAX = 60
+    TIEMPO_INICIAL = 20
+    estado = "CONFIG"
+    tiempo = TIEMPO_INICIAL
+    inicio = 0
+    
+    def mostrar_tiempo(t):
+        display.show(str(t))
+    
+    def explotar():
+        display.show(Image.SKULL)
+        music.play(music.WAWAWAWAA)
+    
+    while True:
+        if estado == "CONFIG":
+            mostrar_tiempo(tiempo)
+    
+            if button_a.was_pressed():
+                if tiempo < TIEMPO_MAX:
+                    tiempo += 1
+                    mostrar_tiempo(tiempo)
+                    sleep(200)
+    
+            if button_b.was_pressed():
+                if tiempo > TIEMPO_MIN:
+                    tiempo -= 1
+                    mostrar_tiempo(tiempo)
+                    sleep(200)
+    
+            if accelerometer.was_gesture("shake"):
+                estado = "ARMED"
+                inicio = utime.ticks_ms()
+    
+        elif estado == "ARMED":
+            tiempo_transcurrido = utime.ticks_diff(utime.ticks_ms(), inicio) // 1000
+            tiempo_restante = tiempo - tiempo_transcurrido
+    
+            if tiempo_restante >= 0:
+                mostrar_tiempo(tiempo_restante)
+            else:
+                estado = "EXPLODE"
+    
+            if button_logo.was_pressed():
+                estado = "CONFIG"
+                tiempo = TIEMPO_INICIAL
+                display.clear()
+                sleep(500)
+    
+        elif estado == "EXPLODE":
+            explotar()
+    
+            if button_logo.was_pressed():
+                estado = "CONFIG"
+                tiempo = TIEMPO_INICIAL
+                display.clear()
+                sleep(500)
+    
+        sleep(100)
+    
