@@ -5,7 +5,7 @@
 
 ### Actividad 6
 
-** Parte 1: recuperación de conocimiento (Retrieval Practice) **
+Parte 1: recuperación de conocimiento (Retrieval Practice)
 
 Describe con tus palabras qué es una máquina de estados. ¿Cuáles son sus cuatro componentes fundamentales que has utilizado en esta unidad?
 
@@ -70,3 +70,4 @@ Un 3 0 4, por la forma de plantear tan distinta.
 Comentario adicional: ¿Hay algo más que te gustaría compartir sobre tu proceso de aprendizaje en esta unidad? ¿Algún momento de frustración o de “¡Aha!” que quieras destacar?
 
 no :D.
+
