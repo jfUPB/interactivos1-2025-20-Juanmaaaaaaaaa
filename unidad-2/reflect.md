@@ -71,3 +71,130 @@ Comentario adicional: ¿Hay algo más que te gustaría compartir sobre tu proces
 
 no :D.
 
+## Corrección actividades anteriores
+
+### Actividad 1
+
+Describe detalladamente cómo funciona este ejemplo.
+
+El programa implementa un semáforo en MicroPython para el micro:bit mediante una máquina de estados con tres estados, ROJO, AMARILLO y VERDE, donde cada uno es representado por un LED en el display. El único evento que provoca el cambio de estado es el paso del tiempo medido con utime.ticks_ms(), y las acciones realizadas incluyen encender el LED correspondiente, limpiar el display, cambiar el estado, reiniciar el temporizador y ajustar la duración de cada color.
+
+¿Cuáles son los estados en el programa?
+
+- Init, estado inicial. Se registra el tiempo de inicio (startTime) y se muestra el pixelState inicial en el display; luego pasa a WaitTimeout.
+- WaitTimeout, estado normal de espera. Aquí se compara el tiempo transcurrido con interval y, si toca, se realiza la acción de alternar el brillo.
+
+
+¿Cuáles son los eventos/inputs en el programa?
+
+- Evento principal: el paso del tiempo, medido con utime.ticks_ms().
+- Evento de inicialización: la primera llamada a update() que hace la transición desde Init a WaitTimeout.
+- Input, paso del tiempo.
+
+¿Cuáles son las acciones en el programa?
+
+- display.set_pixel(x, y, pixelState): escribe el brillo en el display micro:bit (acción visible). 
+- self.startTime = utime.ticks_ms(): registra el tiempo de referencia (acción interna).
+- Alternar pixelState entre 9 y 0 cuando el intervalo se cumple (acción lógica).
+- Cambio de self.state de "Init" a "WaitTimeout" (acción de transición de estado).
+
+
+### Actividad 2
+
+Escribe el código que soluciona este problema en tu bitácora.
+
+    from microbit import *
+    import utime
+    
+    class Semaforo:
+        def __init__(self):
+            self.state = "ROJO"
+            self.startTime = utime.ticks_ms()
+            self.interval = 0
+            self.set_interval(3000)  
+    
+        def set_interval(self, ms):
+            self.interval = ms
+            self.startTime = utime.ticks_ms()
+    
+        def mostrar_color(self):
+            display.clear()
+            if self.state == "ROJO":
+                display.set_pixel(2, 0, 9)  
+            elif self.state == "AMARILLO":
+                display.set_pixel(2, 2, 9)  
+            elif self.state == "VERDE":
+                display.set_pixel(2, 4, 9)  
+    
+        def update(self):
+            if utime.ticks_diff(utime.ticks_ms(), self.startTime) > self.interval:
+        
+                if self.state == "ROJO":
+                    self.state = "VERDE"
+                    self.set_interval(3000) 
+                elif self.state == "VERDE":
+                    self.state = "AMARILLO"
+                    self.set_interval(1000)  
+                elif self.state == "AMARILLO":
+                    self.state = "ROJO"
+                    self.set_interval(3000) 
+    
+                
+                self.mostrar_color()
+
+Identifica los estados, eventos y acciones en tu código.
+
+- Estados:
+ROJO, LED superior encendido.
+AMARILLO, LED central encendido.
+VERDE, LED inferior encendido.
+
+- Eventos:
+Tiempo transcurrido
+
+- Acciones:
+Encender un LED específico en la columna central, según el estado.
+Borrar el display antes de encender el nuevo LED.
+Cambiar el estado de la máquina.
+Reiniciar el temporizador.
+Ajustar la duración del siguiente estado.
+
+
+### Actividad 3
+
+Explica por qué decimos que este programa permite realizar de manera concurrente varias tareas.
+
+Porque gracias a la máquina de estados y el uso de utime.ticks_ms(), el programa puede:
+- Mostrar una imagen en pantalla.
+- Al mismo tiempo detectar pulsaciones del botón.
+- Y controlar temporizadores para cambiar de estado automáticamente.
+Todo sin detener ninguna de estas funciones por una espera bloqueante (sleep). Esto crea la ilusión de que varias tareas ocurren a la vez.
+
+
+Identifica los estados, eventos y acciones en el programa.
+
+Estados
+- STATE_INIT.
+- STATE_HAPPY. 
+- STATE_SMILE. 
+- STATE_SAD.
+
+Eventos
+- Tiempo transcurrido.
+- Pulsación de botón A.
+
+Acciones
+- Mostrar imagen en pantalla.
+- Reiniciar temporizador.
+- Ajustar nuevo intervalo.
+- Actualizar el estado actual.
+
+
+Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.
+
+
+### Actividad 4
+
+Diagrama que no dejó subir github
+
+![flowchart]([https://i.imgur.com/abcd123.png](https://imgur.com/a/WKKJ9PR))
