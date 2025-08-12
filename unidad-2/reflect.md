@@ -197,4 +197,5 @@ Describe y aplica al menos 3 vectores de prueba para el programa. Para definir u
 
 Diagrama que no dejó subir github
 
-![flowchart]([https://i.imgur.com/abcd123.png](https://imgur.com/a/WKKJ9PR))
+![flowchart](https://i.imgur.com/u01XcRv.png)
+
