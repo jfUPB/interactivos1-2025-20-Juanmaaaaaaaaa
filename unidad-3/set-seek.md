@@ -21,7 +21,7 @@ A través de la aplicación dada por el profe la cual lee las letras que se pres
 
 Construye el modelo de la bomba 3.0. Como ya tienes el código puedes tener un modelo muy preciso.
 
-[bitacora.jpg]([https://postimg.cc/r0DbpVdr](https://imgur.com/a/ZIRnEDw))
+![bitacora.jpg](https://i.imgur.com/YNDP6xC.jpeg)
 
 Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por vector y puedes agrupar vectores en un gran vector. Las columnas son:
 - Estado inicial
@@ -41,4 +41,5 @@ Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por v
 | ARMED          | Secuencia (A,B,A)    | Reset count=20, volver a configurar                 | CONFIG           |
 | ARMED          | Secuencia incorrecta | Reset secuencia, sin cambio en contador             | ARMED            |
 | EXPLODED       | T (touch logo)       | Reset count=20, limpiar display                     | CONFIG           |
+
 
