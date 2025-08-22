@@ -160,5 +160,7 @@ código p5.js
         }
     }
 
-Enlace: <iframe src="https://editor.p5js.org/Juanmaaaaaaaaa/full/0CkeuZ5h5"></iframe>
+Enlace: https://editor.p5js.org/Juanmaaaaaaaaa/full/0CkeuZ5h5
+
+
 
