@@ -45,9 +45,9 @@ Código p5.js:
       if (port.availableBytes() > 0) {
         let dataRx = port.read(1);
         if (dataRx == "A") {
-          x -= 10; // mover a la izquierda
+          x -= 10; 
         } else if (dataRx == "B") {
-          x += 10; // mover a la derecha
+          x += 10; 
         }
       }
 
@@ -81,3 +81,4 @@ Microbit código:
         elif button_b.is_pressed():
             uart.write('B')
         sleep(100)
+
