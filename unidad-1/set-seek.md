@@ -49,3 +49,7 @@ Codigo:
       
     }
 
+
+Resultado programa:
+
+![Mi imagen](https://fv5-4.files.fm/thumb_show.php?i=ar5nacwfk6&view&v=1&PHPSESSID=c3416b3ece5dc2eebb50c1e0fc8e715a8bf4013b)
