@@ -23,57 +23,55 @@ Código p5.js:
     let x = 200;
     let connectBtn;
     let connectionInitialized = false;
-    
+        
     function setup() {
       createCanvas(400, 400);
       port = createSerial();
-      let connectBtn = createButton("Connect to micro:bit");
+      connectBtn = createButton("Connect to micro:bit");
       connectBtn.position(80, 300);
       connectBtn.mousePressed(connectBtnClick);
     }
-    
+        
     function draw() {
       background(220);
-
+    
       if (port.opened() && !connectionInitialized) {
         port.clear();
         connectionInitialized = true;
-        }
-      
+      }
+    
       ellipse(x, height / 2, 50, 50);
     
-      if (port.availableBytes() > 0) {
-        let dataRx = port.read(1);
-        if (dataRx == "A") {
-          x -= 10; 
-        } else if (dataRx == "B") {
-          x += 10; 
+        if (port.availableBytes() > 0) {
+          let dataRx = port.read(1);
+          if (dataRx == "A") {
+            x -= 10;
+          } else if (dataRx == "B") {
+              x += 10; 
+          }
+        }
+    
+     
+    
+        if (!port.opened()) {
+          connectBtn.html("Connect to micro:bit");
+        } else {
+          connectBtn.html("Disconnect");
         }
       }
-
-      rectMode(CENTER);
-      rect(width / 2, height / 2, 50, 50);
-
-      if (!port.opened()) {
-        connectBtn.html("Connect to micro:bit");
-      } else {
-        connectBtn.html("Disconnect");
-      }
-    }
     
-    function connectBtnClick() {
-      if (!port.opened()) {
-        port.open("MicroPython", 115200);
-      } else {
-        port.close();
-      }
+      function connectBtnClick() {
+        if (!port.opened()) {
+          port.open("MicroPython", 115200);
+        } else {
+          port.close();
+        }
     }
 
 
 Microbit código:
 
     from microbit import *
-    import uart
     
     while True:
         if button_a.is_pressed():
@@ -81,4 +79,5 @@ Microbit código:
         elif button_b.is_pressed():
             uart.write('B')
         sleep(100)
+
 
