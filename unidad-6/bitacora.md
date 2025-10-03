@@ -205,7 +205,7 @@ El ID de ambos es diferente.
 
 Cierra la pestaña de page1. Observa la terminal. ¿Qué mensaje ves? ¿Coincide el ID con el que anotaste?
 
-    User disconnected - ID: sZxgIDpJjfUS9XebAAAD
+    User disconnected - ID: lYrLl6VFmAOOX8pbAAAB
 
 Si coinciden los ID.
 
@@ -213,7 +213,6 @@ Cierra la pestaña de page2. Observa la terminal.
 
 El mensaje:
 
-    User disconnected - ID: lYrLl6VFmAOOX8pbAAAB
     User disconnected - ID: sZxgIDpJjfUS9XebAAAD
 
 Evidencias:
@@ -237,3 +236,7 @@ Ahora se registra win1update, los datos que veo es el tamaño de la pestaña y l
 <img width="1873" height="939" alt="image" src="https://github.com/user-attachments/assets/d046fe45-5961-4aa1-9f72-e5dbc287ed02" />
 
 Experimento clave: cambia socket.broadcast.emit(‘getdata’, page1); por socket.emit(‘getdata’, page1); (quitando broadcast). Reinicia el servidor, abre ambas páginas. Mueve page1. ¿Se actualiza la visualización en page2? ¿Por qué sí o por qué no? (Pista: ¿A quién le envía el mensaje socket.emit?). Restaura el código a broadcast.emit.
+
+No se actualiza page2, porque socket.emit envía el mensaje únicamente al cliente que originó la acción, no a los demás. Con socket.broadcast.emit, en cambio, el mensaje se envía a todos los demás clientes conectados, menos al que lo originó. Por eso page2 sí recibe la actualización en la versión original.
+
+<img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/f59adf4c-5cbf-4ae6-ad96-31f8da73d986" />
