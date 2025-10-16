@@ -95,7 +95,7 @@ El servidor Node.js recibe este mensaje gracias al evento socket.on('message', m
 Finalmente, el cliente de escritorio escucha los mensajes que llegan desde el servidor con el evento socket.on('message', data). Cuando recibe el objeto con las coordenadas táctiles, verifica que el tipo sea 'touch' y actualiza las variables circleX y circleY con los valores de x y y. Luego, en cada ciclo de la función draw(), el programa redibuja el círculo rojo en la nueva posición, reflejando en tiempo real el movimiento del dedo que se realizó en el celular.
 
 
-## Rúbrica
+## Autoevalución
 
 
 | Criterio | Nota 3  |
@@ -104,3 +104,4 @@ Finalmente, el cliente de escritorio escucha los mensajes que llegan desde el se
 | **Calidad de la Experimentación** | Realicé experimentos con un propósito. Verifiqué que sí se está cumpliendo con lo pedido en la unidad. Verifiqué el orden y la lógica detrás de todos los puntos que desarrollé. |
 | **Análisis y Reflexión** | Relacioné los resultados obtenidos con la teoría y reflexioné sobre los errores como parte del aprendizaje. |
 | **Apropiación y Articulación de Conceptos** | Mostré comprensión clara de los conceptos estudiados en la unidad |
+
